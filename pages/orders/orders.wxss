@@ -1,0 +1,231 @@
+/* pages/orders/orders.wxss */
+.orders-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部Tab */
+.tabs-scroll {
+  background: var(--color-bg-white);
+  white-space: nowrap;
+}
+
+.tabs {
+  display: flex;
+  padding: 24rpx 16rpx;
+  gap: 8rpx;
+}
+
+.tab {
+  display: inline-block;
+  padding: 16rpx 32rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.tab.active {
+  background: var(--color-brand);
+  color: white;
+  font-weight: 500;
+}
+
+/* 订单列表 */
+.order-list {
+  flex: 1;
+  padding: 24rpx;
+}
+
+.order-card {
+  background: var(--color-bg-white);
+  border-radius: var(--radius-md);
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 订单头部 */
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 16rpx;
+}
+
+.order-store {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.order-status {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.order-status.status-pending { color: var(--color-warning); }
+.order-status.status-paid { color: var(--color-info); }
+.order-status.status-preparing { color: var(--color-brand); }
+.order-status.status-ready { color: var(--color-brand); }
+.order-status.status-completed { color: var(--color-success); }
+.order-status.status-cancelled { color: var(--color-text-light); }
+
+/* 商品列表 */
+.order-items {
+  padding: 8rpx 0;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 8rpx 0;
+  font-size: 26rpx;
+}
+
+.item-emoji {
+  font-size: 32rpx;
+}
+
+.item-name {
+  flex: 1;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-qty {
+  color: var(--color-text-secondary);
+}
+
+.order-more {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: 8rpx 0;
+}
+
+/* 订单底部 */
+.order-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16rpx;
+  margin-top: 8rpx;
+  border-top: 1px solid var(--color-border);
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+.order-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
+.amount-label {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+.amount-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+/* 操作按钮 */
+.order-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16rpx;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1px dashed var(--color-border);
+}
+
+.action-btn {
+  padding: 12rpx 28rpx;
+  border-radius: 32rpx;
+  font-size: 24rpx;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+
+.action-btn.btn-pay,
+.action-btn.btn-confirm {
+  background: var(--color-brand);
+  color: white;
+  border-color: var(--color-brand);
+}
+
+.action-btn.btn-remind {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.action-btn:active {
+  opacity: 0.8;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 80rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 32rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 40rpx;
+}
+
+.empty-btn {
+  background: var(--color-brand);
+  color: white;
+  font-size: 28rpx;
+  padding: 24rpx 64rpx;
+  border-radius: 50rpx;
+  border: none;
+}
+
+.empty-btn::after {
+  border: none;
+}
+
+/* 加载更多 */
+.loading-more {
+  text-align: center;
+  padding: 32rpx;
+  color: var(--color-text-secondary);
+  font-size: 26rpx;
+}
+
+/* 底部安全区 */
+.safe-bottom {
+  height: 40rpx;
+}

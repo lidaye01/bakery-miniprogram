@@ -1,0 +1,28 @@
+<!-- coupon-card/coupon-card.wxml -->
+<view class="coupon-card {{mode}} {{available ? 'available' : 'unavailable'}}" bindtap="onTap">
+  <view class="coupon-left">
+    <view class="coupon-value">
+      <text class="value-symbol" wx:if="{{coupon.type === 'cash'}}">¥</text>
+      <text class="value-num">{{coupon.type === 'cash' ? coupon.value : coupon.value}}</text>
+      <text class="value-unit" wx:if="{{coupon.type === 'discount'}}">折</text>
+    </view>
+    <view class="coupon-condition">{{coupon.minAmount ? '满' + coupon.minAmount + '可用' : '无门槛'}}</view>
+  </view>
+  
+  <view class="coupon-right">
+    <view class="coupon-name">{{coupon.name}}</view>
+    <view class="coupon-desc" wx:if="{{coupon.description}}">{{coupon.description}}</view>
+    <view class="coupon-time">{{coupon.validDays ? '领取后' + coupon.validDays + '天内有效' : coupon.validTime}}</view>
+    <view class="coupon-action" wx:if="{{mode === 'receive'}}">
+      <view class="action-btn receive-btn" bindtap="onReceive">立即领取</view>
+    </view>
+    <view class="coupon-action" wx:if="{{mode === 'use' && available}}">
+      <view class="action-btn use-btn" bindtap="onUse">立即使用</view>
+    </view>
+    <view class="coupon-action" wx:if="{{mode === 'use' && !available}}">
+      <view class="action-btn unavailable-btn">暂不可用</view>
+    </view>
+  </view>
+  
+  <view class="coupon-status-tag" wx:if="{{coupon.status}}">{{coupon.statusText}}</view>
+</view>

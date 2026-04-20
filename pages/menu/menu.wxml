@@ -1,0 +1,88 @@
+<wxs module="format" src="../utils/format.wxs"></wxs>
+<!-- pages/menu/menu.wxml -->
+<view class="menu-page">
+  <!-- 分类Tab -->
+  <scroll-view class="category-tabs" scroll-x enable-flex>
+    <view 
+      class="category-tab {{currentCategory === item.id ? 'active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      bindtap="onCategoryChange"
+      data-category="{{item.id}}"
+    >
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <!-- 商品列表 -->
+  <scroll-view class="product-list" scroll-y>
+    <view 
+      class="product-item"
+      wx:for="{{products}}"
+      wx:key="id"
+      wx:if="{{currentCategory === 'all' || item.category === currentCategory}}"
+    >
+      <view class="product-image">
+        <text class="product-emoji">{{item.emoji}}</text>
+      </view>
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-desc">{{item.desc}}</view>
+        <view class="product-meta">
+          <view class="product-price">¥{{item.price}}</view>
+          <view class="product-sales" wx:if="{{item.sales}}">已售{{item.sales}}</view>
+        </view>
+      </view>
+      <view class="product-action">
+        <view class="add-btn" bindtap="onAddToCart" data-product="{{item}}">+</view>
+      </view>
+    </view>
+    
+    <!-- 底部安全区 -->
+    <view class="safe-bottom"></view>
+  </scroll-view>
+
+  <!-- 底部购物车栏 -->
+  <view class="cart-bar safe-area-bottom" wx:if="{{cartCount > 0 || true}}">
+    <view class="cart-info" bindtap="onShowCartDetail">
+      <view class="cart-icon {{cartCount > 0 ? 'active' : ''}}">
+        🛒
+        <view class="cart-badge" wx:if="{{cartCount > 0}}">{{cartCount}}</view>
+      </view>
+      <view class="cart-text">
+        <text wx:if="{{cartCount === 0}}">购物车是空的</text>
+        <text wx:else>共{{cartCount}}件</text>
+      </view>
+    </view>
+    <view class="cart-amount">
+      <text class="amount">¥{{cartAmount}}</text>
+    </view>
+    <view class="checkout-btn {{cartCount === 0 ? 'disabled' : ''}}" bindtap="onCheckout">
+      去结算
+    </view>
+  </view>
+
+  <!-- 购物车详情弹窗 -->
+  <view class="cart-detail-mask" wx:if="{{showCartDetail}}" bindtap="onShowCartDetail">
+    <view class="cart-detail-panel" catchtap="noop">
+      <view class="cart-detail-header">
+        <text class="cart-detail-title">购物车</text>
+        <text class="cart-detail-clear" bindtap="onClearCart">清空</text>
+      </view>
+      <view class="cart-detail-items">
+        <view class="cart-detail-item" wx:for="{{cart}}" wx:key="id">
+          <view class="item-info">
+            <text class="item-emoji">{{item.emoji || '🍞'}}</text>
+            <text class="item-name">{{item.name}}</text>
+          </view>
+          <view class="item-actions">
+            <view class="qty-btn reduce" bindtap="onReduce" data-product="{{item}}">-</view>
+            <text class="qty-num">{{item.quantity}}</text>
+            <view class="qty-btn increase" bindtap="onIncrease" data-product="{{item}}">+</view>
+          </view>
+          <view class="item-price">{{format.formatPrice(format.multiply(item.price, item.quantity))}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

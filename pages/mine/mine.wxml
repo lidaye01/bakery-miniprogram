@@ -1,0 +1,119 @@
+<!-- pages/mine/mine.wxml -->
+<view class="mine-page">
+  <!-- 会员卡片 -->
+  <view class="member-card" bindtap="onMemberTap">
+    <view class="member-header">
+      <view class="member-avatar" wx:if="{{userInfo}}">
+        <open-data type="userAvatarUrl" />
+      </view>
+      <view class="member-avatar" wx:else>
+        <text class="avatar-placeholder">👤</text>
+      </view>
+      <view class="member-info">
+        <view class="member-name">
+          <open-data type="userNickName" wx:if="{{userInfo}}" />
+          <text wx:else>游客</text>
+        </view>
+        <view class="member-level">
+          <text class="level-icon">{{memberInfo.levelIcon}}</text>
+          <text class="level-name">{{memberInfo.levelName}}</text>
+        </view>
+      </view>
+      <view class="member-arrow">›</view>
+    </view>
+    
+    <view class="member-progress">
+      <view class="progress-info">
+        <text>成长值 {{memberInfo.growthValue}}</text>
+        <text>/ {{memberInfo.nextLevelValue}}</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{memberInfo.progressPercent}}%"></view>
+      </view>
+      <view class="progress-tip">再获得{{memberInfo.nextLevelValue - memberInfo.growthValue}}成长值即可升级为{{memberInfo.nextLevelName}}</view>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-section">
+    <view class="stat-item" bindtap="onRechargeTap">
+      <view class="stat-value">¥{{memberInfo.balance}}</view>
+      <view class="stat-label">余额</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item" bindtap="onMenuTap" data-menu="{{menus[1]}}">
+      <view class="stat-value">{{memberInfo.couponCount}}</view>
+      <view class="stat-label">优惠券</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-value">{{memberInfo.points}}</view>
+      <view class="stat-label">积分</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item" bindtap="onMenuTap" data-menu="{{menus[2]}}">
+      <view class="stat-value">{{memberInfo.stampCount}}</view>
+      <view class="stat-label">集点</view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view 
+      class="menu-item"
+      wx:for="{{menus}}"
+      wx:key="id"
+      bindtap="onMenuTap"
+      data-menu="{{item}}"
+    >
+      <view class="menu-left">
+        <text class="menu-icon">{{item.icon}}</text>
+        <text class="menu-name">{{item.name}}</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 底部菜单 -->
+  <view class="menu-section">
+    <view 
+      class="menu-item"
+      wx:for="{{bottomMenus}}"
+      wx:key="id"
+      bindtap="onMenuTap"
+      data-menu="{{item}}"
+    >
+      <view class="menu-left">
+        <text class="menu-icon">{{item.icon}}</text>
+        <text class="menu-name">{{item.name}}</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 会员权益 -->
+  <view class="rights-section">
+    <view class="rights-title">会员权益</view>
+    <view class="rights-grid">
+      <view class="right-item">
+        <text class="right-icon">🎁</text>
+        <text class="right-name">会员折扣</text>
+      </view>
+      <view class="right-item">
+        <text class="right-icon">💰</text>
+        <text class="right-name">积分抵扣</text>
+      </view>
+      <view class="right-item">
+        <text class="right-icon">🎂</text>
+        <text class="right-name">生日特权</text>
+      </view>
+      <view class="right-item">
+        <text class="right-icon">🚀</text>
+        <text class="right-name">优先制作</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部安全区 -->
+  <view class="safe-bottom"></view>
+</view>

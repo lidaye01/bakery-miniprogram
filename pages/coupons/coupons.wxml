@@ -1,0 +1,50 @@
+<!-- pages/coupons/coupons.wxml -->
+<view class="coupons-page">
+  <!-- Tab切换 -->
+  <view class="tabs">
+    <view 
+      class="tab {{currentTab === item.id ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      bindtap="onTabChange"
+      data-tab="{{item.id}}"
+    >
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 优惠券列表 -->
+  <view class="coupon-list">
+    <view 
+      class="coupon-card {{item.status || ''}}"
+      wx:for="{{coupons}}"
+      wx:key="id"
+    >
+      <view class="coupon-left">
+        <view class="coupon-value">
+          <text class="value-symbol" wx:if="{{item.type === 'cash'}}">¥</text>
+          <text class="value-num">{{item.value}}</text>
+          <text class="value-unit" wx:if="{{item.type === 'discount'}}">折</text>
+        </view>
+        <view class="coupon-condition">{{item.minAmount ? '满' + item.minAmount + '可用' : '无门槛'}}</view>
+      </view>
+      
+      <view class="coupon-right">
+        <view class="coupon-name">{{item.name}}</view>
+        <view class="coupon-desc" wx:if="{{item.description}}">{{item.description}}</view>
+        <view class="coupon-time">领取后{{item.validDays}}天内有效</view>
+        <view class="coupon-status" wx:if="{{item.status}}">{{item.statusText}}</view>
+      </view>
+
+      <view class="coupon-action" wx:if="{{currentTab === 'available' && !item.status}}">
+        <view class="action-btn receive" bindtap="onReceiveCoupon" data-coupon="{{item}}">领取</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{coupons.length === 0}}">
+    <view class="empty-icon">🎫</view>
+    <view class="empty-text">暂无优惠券</view>
+  </view>
+</view>

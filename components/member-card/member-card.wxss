@@ -1,0 +1,111 @@
+/* member-card/member-card.wxss */
+.member-card {
+  background: var(--color-brand-gradient);
+  border-radius: var(--radius-lg);
+  padding: 32rpx;
+  color: white;
+}
+
+.member-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.member-avatar {
+  width: 112rpx;
+  height: 112rpx;
+  background: white;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 24rpx;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.member-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 8rpx 20rpx;
+  border-radius: 32rpx;
+  font-size: 24rpx;
+}
+
+.level-icon {
+  font-size: 28rpx;
+}
+
+.member-arrow {
+  font-size: 48rpx;
+  opacity: 0.7;
+}
+
+.member-progress {
+  margin-bottom: 8rpx;
+}
+
+.progress-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+  margin-bottom: 12rpx;
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.progress-value {
+  font-weight: 600;
+}
+
+.progress-tip {
+  font-size: 22rpx;
+  opacity: 0.8;
+  margin-top: 8rpx;
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: white;
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+
+.member-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24rpx;
+  padding-top: 24rpx;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}

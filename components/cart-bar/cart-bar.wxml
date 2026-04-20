@@ -1,0 +1,14 @@
+<!-- cart-bar/cart-bar.wxml -->
+<view class="cart-bar safe-area-bottom">
+  <view class="cart-info" bindtap="onCartTap">
+    <view class="cart-icon {{count > 0 ? 'active' : ''}}">
+      🛒
+      <view class="badge" wx:if="{{count > 0}}">{{count > 99 ? '99+' : count}}</view>
+    </view>
+    <view class="cart-text" wx:if="{{count === 0}}">购物车是空的</view>
+    <view class="cart-text" wx:else>共{{count}}件</view>
+  </view>
+  <view class="checkout-btn {{disabled ? 'disabled' : ''}}" bindtap="onCheckout">
+    去结算 ¥{{amount}}
+  </view>
+</view>

@@ -1,0 +1,47 @@
+<!-- member-card/member-card.wxml -->
+<view class="member-card" bindtap="onTap">
+  <view class="member-header">
+    <view class="member-avatar">
+      <open-data type="userAvatarUrl" />
+    </view>
+    <view class="member-info">
+      <view class="member-name">
+        <open-data type="userNickName" />
+      </view>
+      <view class="member-level">
+        <text class="level-icon">{{member.levelIcon}}</text>
+        <text class="level-name">{{member.levelName}}</text>
+      </view>
+    </view>
+    <view class="member-arrow">›</view>
+  </view>
+  
+  <view class="member-progress" wx:if="{{member.growthValue !== undefined}}">
+    <view class="progress-info">
+      <text class="progress-label">成长值</text>
+      <text class="progress-value">{{member.growthValue}}</text>
+      <text class="progress-next" wx:if="{{member.nextLevelValue}}">/ {{member.nextLevelValue}}</text>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{member.progressPercent}}%"></view>
+    </view>
+    <view class="progress-tip" wx:if="{{member.nextLevelName}}">
+      再获得{{member.nextLevelValue - member.growthValue}}成长值即可升级为{{member.nextLevelName}}
+    </view>
+  </view>
+  
+  <view class="member-stats" wx:if="{{showFull}}">
+    <view class="stat-item">
+      <view class="stat-value">{{member.balance || 0}}</view>
+      <view class="stat-label">余额</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{member.points || 0}}</view>
+      <view class="stat-label">积分</view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-value">{{member.couponCount || 0}}</view>
+      <view class="stat-label">优惠券</view>
+    </view>
+  </view>
+</view>

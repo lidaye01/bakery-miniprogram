@@ -1,0 +1,18 @@
+<!-- product-card/product-card.wxml -->
+<view class="product-card" style="width: {{width}}" bindtap="onTap">
+  <view class="product-image">
+    <image src="{{product.image}}" mode="aspectFill" />
+  </view>
+  <view class="product-info">
+    <view class="product-name">{{product.name}}</view>
+    <view class="product-desc" wx:if="{{product.description}}">{{product.description}}</view>
+    <view class="product-bottom">
+      <view class="product-price">
+        <text class="current">¥{{product.price}}</text>
+        <text class="original" wx:if="{{showOriginalPrice && product.originalPrice}}">¥{{product.originalPrice}}</text>
+      </view>
+      <view class="add-btn" wx:if="{{showAddBtn}}" bindtap="onAddCart">+</view>
+    </view>
+  </view>
+  <view class="product-tag" wx:if="{{product.tag}}">{{product.tag}}</view>
+</view>

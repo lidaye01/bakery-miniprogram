@@ -1,0 +1,87 @@
+<!-- pages/member/member.wxml -->
+<view class="member-page">
+  <!-- 会员卡片 -->
+  <view class="member-card">
+    <view class="member-header">
+      <view class="member-avatar">
+        <open-data type="userAvatarUrl" />
+      </view>
+      <view class="member-info">
+        <view class="member-name">
+          <open-data type="userNickName" />
+        </view>
+        <view class="member-level">
+          <text class="level-icon">{{memberInfo.levelIcon}}</text>
+          <text class="level-name">{{memberInfo.levelName}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="member-progress">
+      <view class="progress-info">
+        <text>成长值 {{memberInfo.growthValue}}</text>
+        <text>/ {{memberInfo.nextLevelValue}}</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{memberInfo.progressPercent}}%"></view>
+      </view>
+      <view class="progress-tip">再获得{{memberInfo.nextLevelValue - memberInfo.growthValue}}成长值即可升级为{{memberInfo.nextLevelName}}</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-entry">
+    <view class="entry-item" bindtap="onRecharge">
+      <text class="entry-icon">💰</text>
+      <text class="entry-value">¥{{memberInfo.balance}}</text>
+      <text class="entry-label">余额</text>
+    </view>
+    <view class="entry-item" bindtap="onCoupons">
+      <text class="entry-icon">🎫</text>
+      <text class="entry-value">{{memberInfo.couponCount}}</text>
+      <text class="entry-label">优惠券</text>
+    </view>
+    <view class="entry-item">
+      <text class="entry-icon">⭐</text>
+      <text class="entry-value">{{memberInfo.points}}</text>
+      <text class="entry-label">积分</text>
+    </view>
+    <view class="entry-item" bindtap="onStamps">
+      <text class="entry-icon">🏷️</text>
+      <text class="entry-value">{{memberInfo.stampCount}}</text>
+      <text class="entry-label">集点</text>
+    </view>
+  </view>
+
+  <!-- 会员权益 -->
+  <view class="section">
+    <view class="section-title">会员权益</view>
+    <view class="rights-grid">
+      <view class="right-item" wx:for="{{rights}}" wx:key="index">
+        <text class="right-icon">{{item.icon}}</text>
+        <text class="right-name">{{item.name}}</text>
+        <text class="right-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成长任务 -->
+  <view class="section">
+    <view class="section-title">成长任务</view>
+    <view class="task-list">
+      <view class="task-item {{task.completed ? 'completed' : ''}}" wx:for="{{tasks}}" wx:key="index">
+        <view class="task-info">
+          <text class="task-name">{{item.name}}</text>
+          <text class="task-reward">{{item.reward}}</text>
+        </view>
+        <view class="task-action">
+          <text wx:if="{{task.completed}}">已完成 ✓</text>
+          <text wx:else class="do-btn">去完成</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部安全区 -->
+  <view class="safe-bottom"></view>
+</view>

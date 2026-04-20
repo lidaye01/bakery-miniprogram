@@ -1,0 +1,38 @@
+<!-- order-card/order-card.wxml -->
+<view class="order-card" bindtap="onTap">
+  <view class="order-header">
+    <view class="order-store">🍞 {{order.storeName || '周21烘焙'}}</view>
+    <view class="order-status status-{{order.status}}">{{order.statusText}}</view>
+  </view>
+  
+  <view class="order-items">
+    <view class="order-item" wx:for="{{order.items}}" wx:key="index" wx:if="{{index < 3}}">
+      <text class="item-emoji">{{item.emoji || '🍞'}}</text>
+      <text class="item-name">{{item.name}}</text>
+      <text class="item-qty">x{{item.quantity}}</text>
+      <text class="item-price">¥{{item.price}}</text>
+    </view>
+    <view class="order-more" wx:if="{{order.items.length > 3}}">
+      ...还有{{order.items.length - 3}}件商品
+    </view>
+  </view>
+  
+  <view class="order-footer">
+    <view class="order-info">
+      <text class="order-time">{{order.createTime}}</text>
+      <text class="order-count">共{{order.totalCount}}件</text>
+    </view>
+    <view class="order-amount">
+      <text>实付</text>
+      <text class="amount">¥{{order.payAmount}}</text>
+    </view>
+  </view>
+  
+  <view class="order-actions" wx:if="{{order.showActions}}">
+    <view class="action-btn btn-cancel" wx:if="{{order.status === 'pending'}}" bindtap="onCancel">取消订单</view>
+    <view class="action-btn btn-pay" wx:if="{{order.status === 'pending'}}" bindtap="onPay">去支付</view>
+    <view class="action-btn btn-remind" wx:if="{{order.status === 'preparing'}}" bindtap="onRemind">提醒制作</view>
+    <view class="action-btn btn-confirm" wx:if="{{order.status === 'ready'}}" bindtap="onConfirm">确认取货</view>
+    <view class="action-btn btn-rate" wx:if="{{order.status === 'completed'}}" bindtap="onRate">去评价</view>
+  </view>
+</view>

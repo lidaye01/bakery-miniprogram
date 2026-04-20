@@ -1,0 +1,121 @@
+<!-- pages/index/index.wxml -->
+<view class="index-page">
+  <!-- 顶部导航 -->
+  <view class="nav-bar">
+    <view class="nav-brand">🍞 周21烘焙</view>
+    <view class="nav-search" bindtap="onSearch">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">搜索面包、蛋糕...</text>
+    </view>
+    <view class="nav-cart" bindtap="onCartTap">
+      🛒
+      <view class="cart-badge" wx:if="{{cartCount > 0}}">{{cartCount}}</view>
+    </view>
+  </view>
+
+  <!-- 页面内容 -->
+  <scroll-view 
+    class="page-content" 
+    scroll-y 
+    enable-back-to-top
+  >
+    <!-- Banner轮播 -->
+    <view class="banner-section">
+      <swiper class="banner-swiper" autoplay circular indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#D4883A">
+        <swiper-item wx:for="{{banners}}" wx:key="id">
+          <view class="banner-item">
+            <view class="banner-content">
+              <text class="banner-title">{{item.title}}</text>
+              <text class="banner-subtitle">{{item.subtitle}}</text>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- 分类入口 -->
+    <view class="category-section">
+      <view class="category-grid">
+        <view 
+          class="category-item" 
+          wx:for="{{categories}}" 
+          wx:key="id"
+          bindtap="onCategoryTap"
+          data-category="{{item}}"
+        >
+          <view class="category-icon" style="background: {{item.color}}20; color: {{item.color}}">
+            {{item.icon}}
+          </view>
+          <view class="category-name">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 爆款推荐 -->
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title">
+          <text class="title-icon">🔥</text>
+          <text>爆款推荐</text>
+        </view>
+        <view class="section-more" bindtap="onViewMore" data-type="hot">查看更多 ›</view>
+      </view>
+      <view class="product-grid">
+        <view 
+          class="product-card"
+          wx:for="{{hotProducts}}"
+          wx:key="id"
+          bindtap="onProductTap"
+          data-product="{{item}}"
+        >
+          <view class="product-image" style="background: #F5E6D3;">
+            <text class="product-emoji">{{item.emoji}}</text>
+            <view class="product-tag" wx:if="{{item.tag}}">{{item.tag}}</view>
+          </view>
+          <view class="product-info">
+            <view class="product-name">{{item.name}}</view>
+            <view class="product-price">
+              <text class="current">¥{{item.price}}</text>
+              <text class="original" wx:if="{{item.originalPrice}}">¥{{item.originalPrice}}</text>
+            </view>
+            <view class="add-btn" bindtap="onAddCart" data-product="{{item}}">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 新品上市 -->
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title">
+          <text class="title-icon">✨</text>
+          <text>新品上市</text>
+        </view>
+        <view class="section-more" bindtap="onViewMore" data-type="new">查看更多 ›</view>
+      </view>
+      <view class="product-grid">
+        <view 
+          class="product-card"
+          wx:for="{{newProducts}}"
+          wx:key="id"
+          bindtap="onProductTap"
+          data-product="{{item}}"
+        >
+          <view class="product-image" style="background: #F5E6D3;">
+            <text class="product-emoji">{{item.emoji}}</text>
+          </view>
+          <view class="product-info">
+            <view class="product-name">{{item.name}}</view>
+            <view class="product-price">
+              <text class="current">¥{{item.price}}</text>
+            </view>
+            <view class="add-btn" bindtap="onAddCart" data-product="{{item}}">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部安全区 -->
+    <view class="safe-bottom"></view>
+  </scroll-view>
+</view>

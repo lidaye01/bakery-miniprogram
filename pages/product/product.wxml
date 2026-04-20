@@ -1,0 +1,87 @@
+<!-- pages/product/product.wxml -->
+<view class="product-page">
+  <scroll-view class="page-content" scroll-y>
+    <!-- 商品图片轮播 -->
+    <view class="product-swiper">
+      <swiper class="swiper" autoplay circular indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#D4883A">
+        <swiper-item wx:for="{{product.images.length > 0 ? product.images : [1]}}" wx:key="index">
+          <view class="swiper-item">
+            <text class="product-emoji">{{product.emoji}}</text>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="product-info-section">
+      <view class="product-price-row">
+        <view class="product-price">
+          <text class="price-symbol">¥</text>
+          <text class="price-value">{{product.price}}</text>
+        </view>
+        <view class="product-original" wx:if="{{product.originalPrice > product.price}}">
+          ¥{{product.originalPrice}}
+        </view>
+      </view>
+      <view class="product-name">{{product.name}}</view>
+      <view class="product-meta">
+        <text class="meta-item">销量 {{product.sales}}</text>
+        <text class="meta-item">库存 {{product.stock}}</text>
+      </view>
+    </view>
+
+    <!-- 规格选择 -->
+    <view class="spec-section">
+      <view class="section-title">规格</view>
+      <view class="spec-options">
+        <view 
+          class="spec-option {{selectedSpec === item.id ? 'selected' : ''}}"
+          wx:for="{{product.specifications}}"
+          wx:key="id"
+          bindtap="onSelectSpec"
+          data-spec-id="{{item.id}}"
+        >
+          <text class="spec-name">{{item.name}}</text>
+          <text class="spec-price" wx:if="{{item.price !== product.price}}">¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品描述 -->
+    <view class="desc-section" wx:if="{{product.description}}">
+      <view class="section-title">商品详情</view>
+      <view class="product-desc">{{product.description}}</view>
+    </view>
+
+    <!-- 底部安全区 -->
+    <view class="safe-bottom"></view>
+  </scroll-view>
+
+  <!-- 底部操作栏 -->
+  <view class="action-bar safe-area-bottom">
+    <view class="action-icons">
+      <view class="action-icon" bindtap="goToHome">
+        <text>🏠</text>
+        <text class="icon-text">首页</text>
+      </view>
+      <view class="action-icon" bindtap="goToCart">
+        <text>🛒</text>
+        <text class="icon-text">购物车</text>
+      </view>
+    </view>
+    <view class="action-buttons">
+      <view class="btn-add-cart" bindtap="onAddToCart">加入购物车</view>
+      <view class="btn-buy-now" bindtap="onBuyNow">立即购买</view>
+    </view>
+  </view>
+
+  <!-- 数量选择器 -->
+  <view class="quantity-bar">
+    <view class="quantity-label">数量</view>
+    <view class="quantity-controls">
+      <view class="qty-btn" bindtap="onReduce">-</view>
+      <text class="qty-value">{{quantity}}</text>
+      <view class="qty-btn" bindtap="onIncrease">+</view>
+    </view>
+  </view>
+</view>

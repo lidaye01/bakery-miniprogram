@@ -1,0 +1,255 @@
+/* pages/product/product.wxss */
+.product-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding-bottom: 200rpx;
+}
+
+/* 商品图片轮播 */
+.product-swiper {
+  background: var(--color-brand-light);
+}
+
+.swiper {
+  height: 560rpx;
+}
+
+.swiper-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-emoji {
+  font-size: 240rpx;
+}
+
+/* 商品信息 */
+.product-info-section {
+  background: var(--color-bg-white);
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-symbol {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.price-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.product-original {
+  font-size: 28rpx;
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.product-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12rpx;
+}
+
+.product-meta {
+  display: flex;
+  gap: 32rpx;
+}
+
+.meta-item {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+/* 规格选择 */
+.spec-section {
+  background: var(--color-bg-white);
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 20rpx;
+}
+
+.spec-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.spec-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 32rpx;
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  border: 2px solid transparent;
+}
+
+.spec-option.selected {
+  background: var(--color-brand-light);
+  border-color: var(--color-brand);
+}
+
+.spec-name {
+  font-size: 28rpx;
+  color: var(--color-text);
+  margin-bottom: 4rpx;
+}
+
+.spec-price {
+  font-size: 22rpx;
+  color: var(--color-brand);
+}
+
+/* 商品描述 */
+.desc-section {
+  background: var(--color-bg-white);
+  padding: 32rpx;
+}
+
+.product-desc {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+/* 底部操作栏 */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background: var(--color-bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.action-icons {
+  display: flex;
+  gap: 40rpx;
+}
+
+.action-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40rpx;
+}
+
+.icon-text {
+  font-size: 20rpx;
+  color: var(--color-text-secondary);
+  margin-top: 4rpx;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-add-cart,
+.btn-buy-now {
+  padding: 24rpx 32rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-add-cart {
+  background: var(--color-brand-light);
+  color: var(--color-brand);
+}
+
+.btn-buy-now {
+  background: var(--color-brand);
+  color: white;
+}
+
+/* 数量选择器 */
+.quantity-bar {
+  position: fixed;
+  right: 200rpx;
+  bottom: 200rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: var(--color-bg-white);
+  padding: 12rpx 16rpx;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  z-index: 101;
+}
+
+.quantity-label {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.qty-btn {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: var(--color-text);
+}
+
+.qty-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  min-width: 40rpx;
+  text-align: center;
+}
+
+/* 底部安全区 */
+.safe-bottom {
+  height: 40rpx;
+}
