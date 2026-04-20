@@ -6,16 +6,13 @@ function formatPrice(value) {
   return value.toFixed(2);
 }
 
-function formatDate(timestamp, format) {
+function formatDate(timestamp) {
   if (!timestamp) return '';
   var date = getDate(timestamp);
   var year = date.getFullYear();
   var month = ('0' + (date.getMonth() + 1)).slice(-2);
   var day = ('0' + date.getDate()).slice(-2);
-  if (!format) {
-    return year + '-' + month + '-' + day;
-  }
-  return format.replace('YYYY', year).replace('MM', month).replace('DD', day);
+  return year + '-' + month + '-' + day;
 }
 
 function formatPhone(phone) {
@@ -25,12 +22,12 @@ function formatPhone(phone) {
 
 function getOrderStatusText(status) {
   var statusMap = {
-    'pending': '待支付',
-    'paid': '已支付',
-    'preparing': '制作中',
-    'ready': '待取货',
-    'completed': '已完成',
-    'cancelled': '已取消'
+    'pending': 'pending',
+    'paid': 'paid',
+    'preparing': 'preparing',
+    'ready': 'ready',
+    'completed': 'completed',
+    'cancelled': 'cancelled'
   };
   return statusMap[status] || status;
 }
@@ -43,9 +40,9 @@ function relativeTime(timestamp) {
   var hour = 60 * minute;
   var day = 24 * hour;
   if (diff < minute) return '刚刚';
-  if (diff < hour) return Math.floor(diff / minute) + '分钟前';
-  if (diff < day) return Math.floor(diff / hour) + '小时前';
-  if (diff < 7 * day) return Math.floor(diff / day) + '天前';
+  if (diff < hour) return Math.floor(diff / minute) + 'min';
+  if (diff < day) return Math.floor(diff / hour) + 'hr';
+  if (diff < 7 * day) return Math.floor(diff / day) + 'day';
   return formatDate(timestamp);
 }
 
