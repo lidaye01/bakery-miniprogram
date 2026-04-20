@@ -1,0 +1,59 @@
+<wxs module="format">
+function formatPrice(value) {
+  if (typeof value !== 'number') {
+    value = parseFloat(value) || 0;
+  }
+  return value.toFixed(2);
+}
+
+function formatDate(timestamp, format) {
+  if (!timestamp) return '';
+  var date = getDate(timestamp);
+  var year = date.getFullYear();
+  var month = ('0' + (date.getMonth() + 1)).slice(-2);
+  var day = ('0' + date.getDate()).slice(-2);
+  if (!format) {
+    return year + '-' + month + '-' + day;
+  }
+  return format.replace('YYYY', year).replace('MM', month).replace('DD', day);
+}
+
+function formatPhone(phone) {
+  if (!phone) return '';
+  return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3');
+}
+
+function getOrderStatusText(status) {
+  var statusMap = {
+    'pending': '待支付',
+    'paid': '已支付',
+    'preparing': '制作中',
+    'ready': '待取货',
+    'completed': '已完成',
+    'cancelled': '已取消'
+  };
+  return statusMap[status] || status;
+}
+
+function relativeTime(timestamp) {
+  if (!timestamp) return '';
+  var now = getDate().getTime();
+  var diff = now - timestamp;
+  var minute = 60 * 1000;
+  var hour = 60 * minute;
+  var day = 24 * hour;
+  if (diff < minute) return '刚刚';
+  if (diff < hour) return Math.floor(diff / minute) + '分钟前';
+  if (diff < day) return Math.floor(diff / hour) + '小时前';
+  if (diff < 7 * day) return Math.floor(diff / day) + '天前';
+  return formatDate(timestamp);
+}
+
+module.exports = {
+  formatPrice: formatPrice,
+  formatDate: formatDate,
+  formatPhone: formatPhone,
+  getOrderStatusText: getOrderStatusText,
+  relativeTime: relativeTime
+};
+</wxs>
